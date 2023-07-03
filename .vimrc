@@ -23,8 +23,8 @@ set softtabstop=2
 set number
 "set relativenumber
 set nowrap
-set hlsearch
-exec "nohlsearch"
+"set hlsearch
+"exec "nohlsearch"
 set incsearch
 
 
@@ -35,11 +35,9 @@ let mapleader = "\<Space>"
 " map W :update<CR>
 map Q :q<CR>
 " 复制和粘贴
-map cp <ESC>wgg0vG$"+y<ESC>gg0 
+map cp <ESC>gg0vG$"+y<ESC>gg0 
 map zt <ESC>gg0vG$"+p<ESC>gg0
 map R :source $MYVIMRC<CR>
-map sr :set splitright<CR>:vsplit<CR>
-map sd :set splitbelow<CR>:split<CR>
 map <LEADER>l <C-w>l
 map <LEADER>h <C-w>h
 map <LEADER>k <C-w>k
@@ -66,70 +64,19 @@ map tt :NERDTree<CR>
 
 
 
-"------------------------------------------------------------------------------------------------------------------------------
-" img-paste
-"let g:mdip_imgname = 'image'
-"autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
-""there are some defaults for image directory and image name, you can change them
-"let g:mdip_imgdir = 'img'
-"let g:mdip_imgname = 'image'
-
-"------------------------------------------------------------------------------------------------------------------------------
-"markdown-preview
-
-"let g:mkdp_auto_start = 0
-"let g:mkdp_browser = 'safari'
-""let g:mkdp_markdown_css = expand('~/codes/css/highlight.js/src/styles/github.css') 
-"let g:mkdp_highlight_css = expand('~/codes/css/highlight.js/src/styles/github.css') 
-"nmap <F8> <Plug>MarkdownPreview
-"nmap <F9> <Plug>MarkdownPreviewStop
-""nmap <C-p> <Plug>MarkdownPreviewToggle
-"" options for markdown render
-"" mkit: markdown-it options for render
-"" katex: katex options for math
-"" uml: markdown-it-plantuml options
-"" maid: mermaid options
-"" disable_sync_scroll: if disable sync scroll, default 0
-"" sync_scroll_type: 'middle', 'top' or 'relative', default value is 'middle'
-""   middle: mean the cursor position alway show at the middle of the preview page
-""   top: mean the vim top viewport alway show at the top of the preview page
-""   relative: mean the cursor position alway show at the relative positon of the preview page
-"" hide_yaml_meta: if hide yaml metadata, default is 1
-"" sequence_diagrams: js-sequence-diagrams options
-"" content_editable: if enable content editable for preview page, default: v:false
-"" disable_filename: if disable filename header for preview page, default: 0
-"let g:mkdp_preview_options = {
-            "\ 'mkit': {},
-            "\ 'katex': {},
-            "\ 'uml': {},
-            "\ 'maid': {},
-            "\ 'disable_sync_scroll': 0,
-            "\ 'sync_scroll_type': 'middle',
-            "\ 'hide_yaml_meta': 1,
-            "\ 'sequence_diagrams': {},
-            "\ 'flowchart_diagrams': {},
-            "\ 'content_editable': v:false,
-            "\ 'disable_filename': 0
-            "\ }
-
-"" vim-markdwon
-"let g:vim_markdown_math = 1
-"let g:vim_markdown_folding_disabled = 1
-
-
 "coc 
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 set signcolumn=no
 
-" plug.vim
-if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    augroup vim-plug_
-        autocmd!
-        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-    augroup END
-endif
+"" plug.vim
+"if empty(glob('~/.vim/autoload/plug.vim'))
+    "silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+                "\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    "augroup vim-plug_
+        "autocmd!
+        "autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    "augroup END
+"endif
 
 
 
@@ -139,14 +86,15 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'vim-airline/vim-airline' 
 Plug 'scrooloose/nerdtree'
 Plug 'mhinz/vim-startify'
-"Plug 'ferrine/md-img-paste.vim'
-"Plug 'iamcco/mathjax-support-for-mkdp'
-"Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
-"Plug 'godlygeek/tabular' "必要插件，安装在vim-markdown前面
-"Plug 'plasticboy/vim-markdown'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'clangd/coc-clangd', {'do': 'yarn install --frozen-lockfile'}
 Plug 'tanvirtin/monokai.nvim'
+
+Plug 'godlygeek/tabular' "必要插件，安装在vim-markdown前面
+Plug 'plasticboy/vim-markdown'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+
+
 call plug#end()
 "------------------------------------------------------------------------------------------------------------------------------
 "let g:syntastic_always_populate_loc_list = 1
@@ -162,6 +110,56 @@ colorscheme monokai
 "colorscheme monokai_pro
 "colorscheme monokai_soda
 "colorscheme monokai_ristretto
+
+"------------------------------------------------------------------------------------------------------------------------------
+" markdown-preview
+
+let g:mkdp_browser = ''
+
+" options for markdown render
+" mkit: markdown-it options for render
+" katex: katex options for math
+" uml: markdown-it-plantuml options
+" maid: mermaid options
+" disable_sync_scroll: if disable sync scroll, default 0
+" sync_scroll_type: 'middle', 'top' or 'relative', default value is 'middle'
+"   middle: mean the cursor position alway show at the middle of the preview page
+"   top: mean the vim top viewport alway show at the top of the preview page
+"   relative: mean the cursor position alway show at the relative positon of the preview page
+" hide_yaml_meta: if hide yaml metadata, default is 1
+" sequence_diagrams: js-sequence-diagrams options
+" content_editable: if enable content editable for preview page, default: v:false
+" disable_filename: if disable filename header for preview page, default: 0
+let g:mkdp_preview_options = {
+    \ 'mkit': {},
+    \ 'katex': {},
+    \ 'uml': {},
+    \ 'maid': {},
+    \ 'disable_sync_scroll': 0,
+    \ 'sync_scroll_type': 'relative',
+    \ 'hide_yaml_meta': 1,
+    \ 'sequence_diagrams': {},
+    \ 'flowchart_diagrams': {},
+    \ 'content_editable': v:true,
+    \ 'disable_filename': 1,
+    \ 'toc': {}
+    \ }
+
+" set default theme (dark or light)
+" By default the theme is define according to the preferences of the system
+let g:mkdp_theme = 'light'
+
+let g:mkdp_auto_start = 0
+
+nmap <F8> <Plug>MarkdownPreview
+nmap <T> <Plug>MarkdownPreviewToggle
+
+"------------------------------------------------------------------------------------------------------------------------------
+"
+"" vim-markdwon
+let g:vim_markdown_math = 1
+let g:vim_markdown_folding_disabled = 1
+
 
 "------------------------------------------------------------------------------------------------------------------------------
 "
