@@ -91,7 +91,7 @@ Plug 'mhinz/vim-startify'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'clangd/coc-clangd', {'do': 'yarn install --frozen-lockfile'}
 Plug 'tanvirtin/monokai.nvim'
-Plug 'godlygeek/tabular' "必要插件，安装在vim-markdown前面
+Plug 'godlygeek/tabular' " install before vim-markdown
 Plug 'plasticboy/vim-markdown'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -183,7 +183,7 @@ let g:coc_global_extensions=['coc-clangd', 'coc-vimlsp', 'coc-json',
       \ 'coc-marketplace', 'coc-markdownlint',
       \ ]
 
-" 配置coc-clangd
+" config coc-clangd
 call coc#config('clangd', {
       \ 'suggest': {
       \   'detailedLabel': 1,
@@ -219,7 +219,7 @@ function! CheckBackspace() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use `[g` and `]g` to navigate diagnostics，找到下一个或上一个报错 
+" Use `[g` and `]g` to navigate diagnostics，find next or previous error
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
