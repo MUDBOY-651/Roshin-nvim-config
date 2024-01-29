@@ -34,7 +34,7 @@ vnoremap <C-v> "+p
 let mapleader = "\<Space>"
 " map W :update<CR>
 map Q :q<CR>
-" 复制和粘贴
+" copy and paste
 map cp <ESC>gg0vG$"+y<ESC>gg0 
 map zt <ESC>gg0vG$"+p<ESC>gg0
 map R :source $MYVIMRC<CR>
@@ -46,10 +46,10 @@ map <LEADER>t :Toc<CR>
 
 
 
-" 启用匹配括号高亮
+" open bracket match
 set showmatch
 
-" 定义C++语言的括号匹配规则
+" define cpp bracket match rules
 augroup cplusplus
     autocmd!
     autocmd FileType cpp setlocal matchpairs+=<:>
